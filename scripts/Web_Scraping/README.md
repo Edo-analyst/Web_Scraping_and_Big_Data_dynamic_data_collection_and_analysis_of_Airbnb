@@ -1,2 +1,13 @@
 # 🗂 Code Organization for Web Scraping
-To scrape data from the website only core_code.R is needed. The other files are loaded into it to perform different task: scroll the web page and click a button to show achieved data (older data), press the link to download different listings, create different folders per city, unzip listings files, rename listings.csv files using the date of the scrape.
+The entire scraping workflow is managed through the main script core_code.R.
+This is the only file needed to run in order to perform the data collection.
+
+core_code.R takes care of:
+1) Starting and closing the Selenium session.
+2) Navigating to the target website.
+3) Iterating through the list of cities and triggering the scraping workflow.
+
+Supporting scripts are automatically sourced within core_code.R:
+-click_function.R: handles interaction with the webpage (scrolling and clicking buttons).
+-download_files.R: downloads the dataset files for each city and organizes them.
+-decompression.R: decompresses the downloaded archives and standardizes the resulting files (renaming and replacing where needed).
