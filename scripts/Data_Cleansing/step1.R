@@ -32,7 +32,7 @@ for (dati in dati_tmp) {
 
 # Combine all city datasets into one
 dati_full <- do.call(rbind, lapply(dati_tmp, get))
-setwd("C:/Users/matez/Desktop/Pulizia_dataset")
+setwd("C:/Desktop/Airbnb_Project/Data_Cleansing") 
 save(file="dati_full.RData", dati_full)
 
 # Check if the total number of rows is correct
@@ -76,5 +76,6 @@ setdiff(colnames(dati_full), colnames(dati))
 rm(dati_full)
 dati_puliti <- dati
 rm(dati)
+
 
 
