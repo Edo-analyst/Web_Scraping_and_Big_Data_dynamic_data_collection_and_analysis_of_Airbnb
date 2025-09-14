@@ -12,7 +12,7 @@ url <- "http://insideairbnb.com/get-the-data.html"
 remDr$navigate(url)
 
 
-##Italt elements
+##Italy elements
 city_section <- remDr$findElements(
   using = 'xpath', '//h3[contains(text(), "Italy")]')
 
@@ -20,11 +20,9 @@ city_section <- remDr$findElements(
 city_title <- sapply(city_section, 
                      function(el) el$getElementText())
 
-
 # Cities names
 city_name <- sapply(city_title,
                     function(x) strsplit(x, ",")[[1]][1])  
-
 
 source("click_function.R")   
 source("download_files.R")   
@@ -38,3 +36,4 @@ for(i in 1 : length(city_name)){
 
 # Close Selenium
 remDr$close()
+
