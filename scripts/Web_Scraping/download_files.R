@@ -2,7 +2,6 @@ library(RSelenium)
 library(stringr)
 library(purrr)
 
-
 # Function to download CSV files for a specific city
 download_files <- function(city_name) {
   # Create a folder for the city
@@ -85,3 +84,4 @@ download_files <- function(city_name) {
   }
 
 }  
+
