@@ -1,5 +1,4 @@
-
-
+#Function to merge different listings
 data_listings <- function(city_name) {
   # Define the directory path
   path <- paste0("C:/Users/matez/Desktop/Pulizia_dataset/", city_name)
@@ -21,5 +20,6 @@ data_listings <- function(city_name) {
   
   return(combined_data)
 }
+
 
 
