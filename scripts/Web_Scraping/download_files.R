@@ -9,17 +9,13 @@ download_files <- function(city_name) {
   dir.create(city_name, showWarnings = FALSE)
   
   # Find the <h3> element corresponding to the city
-  city_h3 <- remDr$findElement(using = "xpath", 
-                               sprintf(
-                                 "//h3[contains(text(),
-                                 '%s')]", city_name))
+  city_h3 <- remDr$findElement(using = "xpath", sprintf("//h3[contains(text(),'%s')]", city_name))
   if (is.null(city_h3)) {
     stop("City not found on the page")
   }
   
   # Select all subsequent elements (following-sibling)
-  city_elements <- city_h3$findChildElements(using = "xpath", 
-                                             "./following-sibling::*")
+  city_elements <- city_h3$findChildElements(using = "xpath", "./following-sibling::*")
   
   # Iterate through subsequent elements
   for (el in city_elements) {
@@ -27,22 +23,20 @@ download_files <- function(city_name) {
     
     # Stop if another <h3> is encountered
     if (tag_name == "h3") {
-      message("Encountered a new <h3>, 
-              stopping section processing for: ", city_name)
+      message("Encountered a new <h3>, stopping section processing for: ", city_name)
       break
     }
     
     # If it is an <h4>, process the date
     if (tag_name == "h4") {
       h4_text <- el$getElementText()[[1]]
-      if (!grepl("[0-9]{2} [A-Za-z]+, [0-9]{4}", 
-                 h4_text)) next  # Skip invalid dates
+      if (!grepl("[0-9]{2} [A-Za-z]+, [0-9]{4}", h4_text)) 
+        next  # Skip invalid dates
       
       message("Valid date found: ", h4_text)
       
       # Find the table immediately following the <h4>
-      table_elements <- el$findChildElements(using = "xpath",
-                                             "./following-sibling::table[1]")
+      table_elements <- el$findChildElements(using = "xpath", "./following-sibling::table[1]")
       if (length(table_elements) == 0) {
         message("No table found after <h4>: ", h4_text)
         next
@@ -51,8 +45,7 @@ download_files <- function(city_name) {
       table_element <- table_elements[[1]]
       
       # Download files from the links in the table
-      file_types <- c("listings.csv.gz", "reviews.csv.gz",
-                      "neighbourhoods.csv")
+      file_types <- c("listings.csv.gz", "reviews.csv.gz","neighbourhoods.csv")
       for (file_type in file_types) {
         message("Looking for link: ", file_type)
         file_links <- table_element$findChildElements
@@ -69,8 +62,7 @@ download_files <- function(city_name) {
         message("Link found: ", file_url)
         
         # Attempt to extract the date from the URL
-        file_date <- str_extract(file_url, 
-                                 "[0-9]{4}-[0-9]{2}-[0-9]{2}")
+        file_date <- str_extract(file_url, "[0-9]{4}-[0-9]{2}-[0-9]{2}")
         if (is.na(file_date)) {
           file_date <- gsub(", ", "_", h4_text)  
           file_date <- str_replace_all(file_date, " ", "_")
@@ -79,14 +71,10 @@ download_files <- function(city_name) {
         # Construct the destination file name, appending the date
         if (grepl("csv.gz", file_type)) {
           file_name <- str_replace(file_type, "\\.csv.gz", "")
-          dest_file <- file.path(city_name, 
-                                 paste0(file_name,
-                                        "_", file_date, ".csv.gz"))
+          dest_file <- file.path(city_name, paste0(file_name, "_", file_date, ".csv.gz"))
         } else if (grepl("csv", file_type)) {
           file_name <- str_replace(file_type, "\\.csv", "")
-          dest_file <- file.path(city_name,
-                                 paste0(file_name, "_",
-                                        file_date, ".csv"))
+          dest_file <- file.path(city_name, paste0(file_name, "_", file_date, ".csv"))
         }
         
         # Download the file
@@ -95,4 +83,5 @@ download_files <- function(city_name) {
       }
     }
   }
+
 }  
