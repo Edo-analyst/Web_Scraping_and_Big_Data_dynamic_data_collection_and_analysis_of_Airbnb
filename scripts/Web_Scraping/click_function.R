@@ -1,15 +1,14 @@
 button_click <- function(city_name){
   
   # Construct the dynamic XPath with the provided city name
-  xpath_button <- sprintf('//a[@class="showArchivedData" 
+  xpath_button <- sprintf('//a[@class="showArchivedData"
                           and @data-city="%s"]', city_name)
-  
   
   # Find show button for city
   button <- remDr$findElement(using = 'xpath', xpath_button)
   
   # Use JavaScript to scroll to the button with a safe margin
-  remDr$executeScript("arguments[0].scrollIntoView({behavior: 
+  remDr$executeScript("arguments[0].scrollIntoView({behavior:
                       'smooth', block: 'center'});", list(button))
   
   # Add delay to let the page scroll and stabilize (0.5 sec)
@@ -17,8 +16,7 @@ button_click <- function(city_name){
   
   # Check if the button is visible
   button_style <- button$getElementAttribute("style")[[1]]
-  is_visible <- !(grepl("display: none", button_style) || 
-                    grepl("visibility: hidden", button_style))
+  is_visible <- !(grepl("display: none", button_style) || grepl("visibility: hidden", button_style))
   
   # Check if the button is disabled (if "disabled" attribute exists)
   is_enabled <- TRUE
@@ -47,3 +45,4 @@ button_click <- function(city_name){
     message("The button is not visible or enabled.")
   }
 }
+
