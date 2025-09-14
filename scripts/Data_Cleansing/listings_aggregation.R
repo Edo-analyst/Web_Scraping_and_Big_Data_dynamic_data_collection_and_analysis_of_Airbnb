@@ -1,7 +1,7 @@
 #Function to merge different listings
 data_listings <- function(city_name) {
   # Define the directory path
-  path <- paste0("C:/Users/matez/Desktop/Pulizia_dataset/", city_name)
+  path <- paste0("C:/Desktop/Airbnb_Project/Data_Cleansing/", city_name)
 
   # Change the working directory
   setwd(path)
@@ -20,6 +20,3 @@ data_listings <- function(city_name) {
   
   return(combined_data)
 }
-
-
-
