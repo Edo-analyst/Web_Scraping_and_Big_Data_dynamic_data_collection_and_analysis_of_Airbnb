@@ -1,4 +1,3 @@
-library(RSelenium)
 library(stringr)
 library(purrr)
 
@@ -84,4 +83,5 @@ download_files <- function(city_name) {
   }
 
 }  
+
 
