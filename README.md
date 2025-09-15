@@ -52,6 +52,64 @@ The downloaded datasets from InsideAirbnb include:
 
 
 ## 📊 Data Cleansing
+The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to ensure a **consistent, structured, and analyzable dataset**.
+
+### 🔹 Dataset Aggregation
+
+1. **Quarterly listings** were collected (Dec 2023 – Dec 2024) for **10 cities**.
+2. City-specific datasets were merged into a single dataset: **824,911 listings × 76 variables**.
+3. Added three new variables:
+
+   * **`city`** – identifies the city of the listing
+   * **`house_id`** – unique property ID per host (created by analyzing host ID, coordinates, and listing IDs)
+   * **`id_period`** – quarterly scraping period (1–4), derived from `last_scraped`
+
+---
+
+### 🔹 Variable Cleaning & Encoding
+
+1. Removed **irrelevant variables**: descriptive text, URLs, and redundant review-related columns.
+2. Kept only `minimum_nights` and `maximum_nights` for nights variables.
+3. Converted character variables to **categorical factors**.
+4. Cleaned numeric variables:
+
+   * Removed `%` from response/acceptance rates
+   * Removed `$` and `,` from `price`
+   * Converted `house_id` to numeric (replacing `_` with `00`)
+5. Missing values `"N/A"` were converted to `NA`.
+
+---
+
+### 🔹 Handling Missing Data
+
+1. Variables with excessive missing values (e.g., `neighbourhood_group_cleansed`) were removed.
+2. Categorical missing values were labeled `"Unknown"`.
+3. **Bedrooms**: missing values were extracted from the `name` field → `bedrooms_recoded`.
+4. **Bathrooms**: numeric value extracted from `bathrooms_text`, half-baths → `0.5` → `bathrooms_recoded`.
+5. Original `bedrooms`, `bathrooms`, and `bathrooms_text` removed.
+6. Skewed or low-quality variables (e.g., `host_response_time`) were excluded.
+
+---
+
+### 🔹 Price Processing
+
+1. Removed missing values (54,770 listings) and outliers (`price > $4,000`).
+2. Applied **log transformation** to reduce skewness and improve modeling.
+
+---
+
+### 🔹 Recoding Categorical Variables
+
+1. **`property_type`** (137 levels) → `property_type_recoded` with top 4 categories + `Other`.
+2. **`host_response_time`**: merged `within a day` + `a few days or more` → `more time`.
+3. **`room_type`**: merged `Hotel room`, `Private room`, `Shared room` → `Private/Shared/Hotel`.
+4. Removed listings with `maximum_nights > 1125` or missing review scores.
+
+---
+
+👉 After preprocessing, the dataset is **clean, consistent, and ready for analysis or modeling**, with 35 key variables carefully prepared.
+
+---
 
 ## 📈 Exploratory Data Analysis
 
