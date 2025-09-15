@@ -51,7 +51,7 @@ The downloaded datasets from InsideAirbnb include:
 ---
 
 
-## 📊 Data Cleansing
+## 🧼 Data Cleansing
 The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to ensure a **consistent, structured, and analyzable dataset**.
 
 ### 🔹 Dataset Aggregation
@@ -111,8 +111,8 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
 ---
 
-## 📈 Exploratory Data Analysis
+## 📊 Exploratory Data Analysis
 
 ## 🤖 Modeling
 
-## 📌 Results
+## 🏆 Results
