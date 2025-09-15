@@ -40,7 +40,7 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
 The downloaded datasets from InsideAirbnb include:
 
 * **`listings.csv`** → detailed information on listings (price, property type, location, host, amenities, etc.).
-* **`reviews.csv.gz`** → full guest reviews (date, text, listing ID).
+* **`reviews.csv`** → full guest reviews (date, text, listing ID).
 * **`neighbourhoods.csv`** → list of neighborhoods in each city.
 * **`neighbourhoods.geojson`** → geographic boundaries of neighborhoods, useful for spatial analysis.
 
