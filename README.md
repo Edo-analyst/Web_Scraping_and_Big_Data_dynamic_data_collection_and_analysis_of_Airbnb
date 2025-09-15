@@ -14,7 +14,7 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
    * Installed Java, Selenium Server, and GeckoDriver (required for Firefox).
    * Launched a Firefox instance via `rsDriver()` in RSelenium.
 
-3. **Navigation & city identification**
+3. **Navigation & City identification**
 
    * Accessed the *Get the Data* section of InsideAirbnb.
    * Extracted `<h3>` elements containing the string *Italy* using XPath queries to retrieve the list of Italian cities.
