@@ -33,8 +33,6 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
 
    * Files in `.csv.gz` format were automatically decompressed with `gunzip()` (from the **R.utils** package) and replaced with their `.csv` versions.
 
----
-
 ### 🔹 Types of collected data
 
 The downloaded datasets from InsideAirbnb include:
