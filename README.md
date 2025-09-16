@@ -3,7 +3,7 @@
 ## 📖 Overview
 Analysis and extraction of data from dynamic web pages using the RSelenium library to gather information from Airbnb listings related to Italy. Subsequently, machine learning methods are applied to compare differences between cities and identify the main factors influencing rental prices in different areas. 
 
-## 📂 Data Collection (![more](scripts/Web_Scraping))
+## 📂 Data Collection
 The datasets used in this project were collected from [InsideAirbnb](https://insideairbnb.com/), which provides publicly available data on Airbnb listings.
 The entire process was **automated** using **RSelenium** in R, enabling programmatic browser interaction.
 
@@ -44,7 +44,7 @@ The downloaded datasets from InsideAirbnb include:
 
 ---
 
-👉 This automated pipeline ensures a **structured, reproducible, and up-to-date data collection process**, enabling systematic analysis of Airbnb activity across multiple Italian cities.
+👉 This automated pipeline ensures a **structured, reproducible, and up-to-date data collection process**, enabling systematic analysis of Airbnb activity across multiple Italian cities. (![code](scripts/Web_Scraping))
 
 ---
 
