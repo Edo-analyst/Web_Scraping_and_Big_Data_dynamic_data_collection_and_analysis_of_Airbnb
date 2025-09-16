@@ -17,7 +17,7 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
 3. **Navigation & City identification**
 
    * Accessed the *Get the Data* section of InsideAirbnb.
-   * Extracted `<h3>` elements containing the string *Italy* using XPath queries to retrieve the list of Italian cities.
+   * Extracted titles (`<h3>` elements) containing the string *Italy* using XPath queries to retrieve the list of Italian cities.
 
 4. **Accessing hidden data**
 
@@ -61,8 +61,6 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
    * **`city`** – identifies the city of the listing
    * **`house_id`** – unique property ID per host (created by analyzing host ID, coordinates, and listing IDs)
    * **`id_period`** – quarterly scraping period (1–4), derived from `last_scraped`
-
----
 
 ### 🔹 Variable Cleaning & Encoding
 
