@@ -9,6 +9,7 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
 
 ---
 
+
 ### 🔹 Collection process
 
 1. **Environment setup**
@@ -85,7 +86,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 1. Variables with excessive missing values (e.g., `neighbourhood_group_cleansed`) were removed.
 2. Categorical missing values were labeled `"Unknown"`.
 3. **Bedrooms**: missing values were extracted from the `name` field → variable `bedrooms_recoded` created.
-4. **Bathrooms**: numeric value extracted from `bathrooms_text` (half-baths → `0.5`) → variable`bathrooms_recoded` created.
+4. **Bathrooms**: numeric value extracted from `bathrooms_text` (half-baths → `0.5`) → variable `bathrooms_recoded` created.
 5. Original `bedrooms`, `bathrooms`, and `bathrooms_text` removed.
 6. Skewed or low-quality variables (`host_response_time` and `host_acceptance_rate`) were excluded.
 
@@ -94,7 +95,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 ### 🔹 Price Processing
 
 1. Removed missing values (54,770 listings) and outliers (`price > $4,000`).
-2. Applied **log transformation** to reduce skewness and improve modeling.
+2. Applied **log transformation** to reduce skewness and improve modeling → variable `lp` (log price) created.
 
 |        | Minimum | First Quartile | Median  | Mean   | Third Quartile | Maximum  |
 ---------|---------|----------------|--------|--------|----------------|---------|
@@ -117,6 +118,7 @@ Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 400
 ---
 
 ## 📊 Exploratory Data Analysis
+The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**.
 
 ## 🤖 Modeling
 
