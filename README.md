@@ -119,7 +119,7 @@ Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 400
 
 ## 📊 Exploratory Data Analysis
 The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**.
-![Data Architecture](plots/wiesel.png)
+![Data Architecture](plots/weasel.png)
 
 ---
 
