@@ -88,7 +88,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 3. **Bedrooms**: missing values were extracted from the `name` field → variable `bedrooms_recoded` created.
 4. **Bathrooms**: numeric value extracted from `bathrooms_text` (half-baths → `0.5`) → variable`bathrooms_recoded` created.
 5. Original `bedrooms`, `bathrooms`, and `bathrooms_text` removed.
-6. Skewed or low-quality variables (e.g., `host_response_time`) were excluded.
+6. Skewed or low-quality variables (`host_response_time` and `host_acceptance_rate`) were excluded.
 
 ---
 
