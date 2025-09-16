@@ -44,7 +44,6 @@ The downloaded datasets from InsideAirbnb include:
 * **`listings.csv`** → detailed information on listings (price, property type, location, host, amenities, etc.).
 * **`reviews.csv`** → full guest reviews (date, text, listing ID).
 * **`neighbourhoods.csv`** → list of neighborhoods in each city.
-* **`neighbourhoods.geojson`** → geographic boundaries of neighborhoods, useful for spatial analysis.
 
 ---
 
@@ -122,3 +121,6 @@ Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 400
 ## 🤖 Modeling
 
 ## 🏆 Results
+
+## 💡 Potential Extensions
+- Download **`neighbourhoods.geojson`** from [InsideAirbnb](https://insideairbnb.com/), which defines neighborhood boundaries, for spatial analysis.
