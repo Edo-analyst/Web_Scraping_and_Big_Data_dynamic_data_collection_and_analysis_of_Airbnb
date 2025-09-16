@@ -71,8 +71,8 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
    * Removed `%` from response/acceptance rates
    * Removed `$` and `,` from `price`
-   * Converted `house_id` to numeric (replacing `_` with `00`)
-5. Missing values `"N/A"` were converted to `NA`.
+   * Converted `house_id` to numeric (after replacing `_` with `00`)
+5. Missing values represented as `"N/A"` were converted to `NA`.
 
 ---
 
