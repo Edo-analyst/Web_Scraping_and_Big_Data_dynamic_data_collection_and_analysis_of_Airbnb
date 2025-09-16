@@ -7,6 +7,8 @@ Analysis and extraction of data from dynamic web pages using the RSelenium libra
 The datasets used in this project were collected from [InsideAirbnb](https://insideairbnb.com/), which provides publicly available data on Airbnb listings.
 The entire process was **automated** using **RSelenium** in R, enabling programmatic browser interaction.
 
+---
+
 ### 🔹 Collection process
 
 1. **Environment setup**
@@ -32,6 +34,8 @@ The entire process was **automated** using **RSelenium** in R, enabling programm
 6. **Decompression of compressed files**
 
    * Files in `.csv.gz` format were automatically decompressed with `gunzip()` (from the **R.utils** package) and replaced with their `.csv` versions.
+
+---
 
 ### 🔹 Types of collected data
 
@@ -69,9 +73,10 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 3. Converted character variables to **categorical factors**.
 4. Cleaned numeric variables:
 
-   * Removed `%` from response/acceptance rates
+   * Removed `%` from response/acceptance rates 
    * Removed `$` and `,` from `price`
-   * Converted `house_id` to numeric (after replacing `_` with `00`)
+   * Replaced `_` with `00` in `house_id`
+   * Converted all cleaned variables to numeric
 5. Missing values represented as `"N/A"` were converted to `NA`.
 
 ---
@@ -80,8 +85,8 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
 1. Variables with excessive missing values (e.g., `neighbourhood_group_cleansed`) were removed.
 2. Categorical missing values were labeled `"Unknown"`.
-3. **Bedrooms**: missing values were extracted from the `name` field → `bedrooms_recoded`.
-4. **Bathrooms**: numeric value extracted from `bathrooms_text`, half-baths → `0.5` → `bathrooms_recoded`.
+3. **Bedrooms**: missing values were extracted from the `name` field → variable `bedrooms_recoded` created.
+4. **Bathrooms**: numeric value extracted from `bathrooms_text` (half-baths → `0.5`) → variable`bathrooms_recoded` created.
 5. Original `bedrooms`, `bathrooms`, and `bathrooms_text` removed.
 6. Skewed or low-quality variables (e.g., `host_response_time`) were excluded.
 
@@ -92,13 +97,18 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 1. Removed missing values (54,770 listings) and outliers (`price > $4,000`).
 2. Applied **log transformation** to reduce skewness and improve modeling.
 
+|        | Minimum | First Quartile | Median  | Mean   | Third Quartile | Maximum  |
+---------|---------|----------------|--------|--------|----------------|---------|
+Price (before)| 8.0     | 71.0           | 100.0  | 180.4  | 160.0          | 95195.0 |
+Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 4000.0  |
+
 ---
 
 ### 🔹 Recoding Categorical Variables
 
 1. **`property_type`** (137 levels) → `property_type_recoded` with top 4 categories + `Other`.
-2. **`host_response_time`**: merged `within a day` + `a few days or more` → `more time`.
-3. **`room_type`**: merged `Hotel room`, `Private room`, `Shared room` → `Private/Shared/Hotel`.
+2. **`host_response_time`**: merged categories `within a day` + `a few days or more` as `more time`.
+3. **`room_type`**: merged categories `Hotel room`, `Private room`, `Shared room` as `Private/Shared/Hotel`.
 4. Removed listings with `maximum_nights > 1125` or missing review scores.
 
 ---
