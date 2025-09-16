@@ -113,7 +113,7 @@ Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 400
 
 ---
 
-👉 After preprocessing, the dataset is **clean, consistent, and ready for analysis or modeling**, with 35 key variables carefully prepared.
+👉 After preprocessing, the dataset is **clean, consistent, and ready for analysis or modeling**, with 35 key variables carefully prepared. (![code](scripts/EDA))
 
 ---
 
@@ -124,5 +124,23 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
 
 ## 🏆 Results
 
+📊 Full results and plots available below ⬇️  
+
+<details>
+  <summary>🔎 Click to expand full EDA (descriptions + charts)</summary>
+
+![Price Distribution](visuals/price_distribution.png)
+
+![Property Types](visuals/property_types.png)
+
+Additional details about host behavior, property sizes, and price dynamics are provided here.
+
+</details>
+
+👉 Or check the full report in [docs/EDA.md](docs/EDA.md)
+
+
+
+</details>
 ## 💡 Potential Extensions
 - Download **`neighbourhoods.geojson`** from [InsideAirbnb](https://insideairbnb.com/), which defines neighborhood boundaries, for spatial analysis.
