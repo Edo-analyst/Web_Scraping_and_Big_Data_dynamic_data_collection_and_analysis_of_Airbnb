@@ -136,20 +136,20 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
 
 The main findings from the rental price analysis are:
 
-- **Key factors**:  
+1. **Key factors**:  
   - Number of bedrooms, bathrooms, and guests  
   - Property type  
   - Review scores  
 
-- **Predictive models**:  
+2. **Predictive models**:  
   - Non-parametric models, especially **Random Forest**, showed the best predictive performance.  
 
-- **Longitudinal analysis and geographical differences**:  
+3. **Longitudinal analysis and geographical differences**:  
   - **Naples**: lower average prices with a decreasing trend over time  
   - **Rome**: faster price growth over time  
   - **Venice**: higher-than-average prices with steady growth  
 
-- **Individual temporal trends**:  
+4. **Individual temporal trends**:  
   - Mixed-effects models with random intercept and slope show that price trends vary across properties  
   - Negative correlation between initial price and sensitivity to time: properties with higher initial prices react less to changes, while lower-priced ones show larger variations  
 
