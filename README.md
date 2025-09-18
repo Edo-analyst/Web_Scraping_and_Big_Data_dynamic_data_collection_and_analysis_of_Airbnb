@@ -115,11 +115,28 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 ## 📊 Exploratory Data Analysis
 The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**.
 <details>
-  <summary>Log Price</summary>
+  <summary><strong>Log Price</strong></summary>
+
+  <br> <!-- aggiunge spazio -->
 
   ![Violin Log Price by City](docs/violin_lp_city.png)
 
+</details
+
+<details>
+  <summary><strong>Host attributes</strong></summary>
+
+  ### Distribuzione prezzi (Log Price)
+  ![Log Price](docs/violin_lp_city.png)
+
+  ### Tipologia host
+  ![Host Type](docs/host_type.png)
+
+  ### Frequenza recensioni
+  ![Review Frequency](docs/review_freq.png)
+
 </details>
+
 
 
 ---
