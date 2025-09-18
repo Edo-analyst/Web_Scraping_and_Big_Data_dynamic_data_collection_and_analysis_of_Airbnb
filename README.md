@@ -186,8 +186,6 @@ The full dataset is then used to analyze price trends over time, focusing on fou
 
 ## 🏆 Results
 
-## Results
-
 The main findings from the rental price analysis are:
 
 1. **Key factors**:  
