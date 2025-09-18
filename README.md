@@ -113,7 +113,8 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 ---
 
 ## 📊 Exploratory Data Analysis
-The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**.
+The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**. 
+Initial analyses focused on the most recent quarter, using the latest available prices for all listings.
 <details>
   <summary><strong>Property Prices</strong></summary>
 
@@ -137,6 +138,9 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
   ### Instant Bookable
   ![Instant Bookable](docs/instant_book.png)
 
+  ### Property Size
+  ![Instant Bookable](docs/scatterplots.png)
+
 </details>
 
 <details>
@@ -154,6 +158,8 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
   ![Instant Bookable](docs/response.png)
 
 </details>
+
+The full dataset is then used to analyze price trends over time, focusing on four major cities: Milan, Venice, Rome, and Naples.
 
 
 ---
