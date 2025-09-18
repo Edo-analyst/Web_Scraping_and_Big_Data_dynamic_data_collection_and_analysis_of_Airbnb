@@ -97,11 +97,6 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 1. Removed missing values (54,770 listings) and outliers (`price > $4,000`).
 2. Applied **log transformation** to reduce skewness and improve modeling → variable `lp` (log price) created.
 
-|        | Minimum | First Quartile | Median  | Mean   | Third Quartile | Maximum  |
----------|---------|----------------|--------|--------|----------------|---------|
-Price (before)| 8.0     | 71.0           | 100.0  | 180.4  | 160.0          | 95195.0 |
-Price (after)| 8.0     | 71.0           | 100.0  | 148.7  | 159.0          | 4000.0  |
-
 ---
 
 ### 🔹 Recoding Categorical Variables
