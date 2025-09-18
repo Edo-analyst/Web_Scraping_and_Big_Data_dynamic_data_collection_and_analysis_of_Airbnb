@@ -172,7 +172,7 @@ The full dataset is then used to analyze price trends over time, focusing on fou
   ![Property Type](docs/individual_lp.png)
 
   ### House Prices by Different Hosts 
-  ![Instant Bookable](docs/response.png)
+  ![Instant Bookable](docs/spaghetti_plot.png)
 
 </details>
 
