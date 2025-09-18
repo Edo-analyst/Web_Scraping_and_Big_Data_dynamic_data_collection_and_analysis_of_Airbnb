@@ -15,7 +15,7 @@ load("last_quarter.RData")
 
 dati<-last_quarter
 rm(last_quarter)
-dati$price=NULL  #uso lp
+dati$price=NULL  # use log-price
 dati$id=NULL
 dati$host_id=NULL
 dati$house_id=NULL
@@ -33,7 +33,7 @@ dati_rid <- dati
 rm(dati)
 table(dati_rid$city)
 
-##MODELLI ROMA---------------------------------------------------------------
+##MODELS ROME---------------------------------------------------------------
 city <-dati_rid %>% 
   filter(city == "Rome") %>% 
   select(!city)
@@ -44,7 +44,7 @@ sss = city[acaso, ]
 vvv = city[-acaso,]
 
 #+++++++++++++++++++++++
-# Modello Lineare ------------------------
+# Linear Model ------------------------
 #+++++++++++++++++++++++
 model_full <- lm(lp~., data = city)
 summary(model_full)
@@ -56,7 +56,7 @@ mspe.lm <- mean((p.lm-vvv$lp)^2)
 mspe.lm
 
 #+++++++++++++++++++++++
-# Lasso ed elastic net ------------------------
+# Lasso and Elastic Net ------------------------
 #+++++++++++++++++++++++
 
 #Lasso
@@ -80,14 +80,14 @@ mspe.lasso
 
 
 log(mod.lasso$lambda.1se)
-log(mod.lasso$lambda.min)  #più piccolo
+log(mod.lasso$lambda.min)  # smaller
 
 mod.lasso$lambda.min
 mod.lasso$lambda.1se
 
 coef(mod.lasso)
 
-#Lasso adattivo
+#Adaptive Lasso
 lm_ad <- lm(lp ~ x[,-1] , data = sss)
 coef(lm_ad)
 pesi <- 1/abs(coef(lm_ad))
@@ -107,14 +107,14 @@ mspe.lasso_ad
 
 
 log(mod.lasso_ad$lambda.1se)
-log(mod.lasso_ad$lambda.min)  #più piccolo
+log(mod.lasso_ad$lambda.min)  # smaller
 
 mod.lasso_ad$lambda.min
 mod.lasso_ad$lambda.1se
 
 coef(mod.lasso_ad)
 
-#elastic net con pesi adattivi
+#Elastic Net with adaptive weights
 elast_net=cv.glmnet(x[,-1], sss$lp,alpha=0.5, 
                     lambda.min.ratio=1e-8, penalty.factor = pesi[-1] )
 plot(elast_net)
@@ -130,43 +130,41 @@ mspe.elast <- mean((p.elast-vvv$lp)^2)
 mspe.elast
 
 log(elast_net$lambda.1se)
-log(elast_net$lambda.min)  #più piccolo
+log(elast_net$lambda.min)  # smaller
 
-elast_net$lambda.min
 elast_net$lambda.1se
-
+elast_net$lambda.min
 
 coef(elast_net)
 
-####ALBERI DI REGRESSIONE---------------
+####REGRESSION TREES---------------
 
 library(tree)
-# Regolazione: crescita di un albero molto fitto, e poi potatura.
-# Puo' essere condotta tramite un insieme di convalida, oppure convalida incrociata.
+# Tuning: grow a very deep tree, then prune it.
+# Can be done with a validation set or cross-validation.
 
-# Stima di albero molto fitto (tramite mindev e minsize)
+# Estimate a very deep tree (using mindev and minsize)
 m_tree = tree(lp~.,
               data = sss, control = tree.control(nobs = NROW(sss),
                                                  minsize = 2, mindev = 0.0005))
-#' control ci dice come controllare la crescita dell'albero, qui uso CV
-#' tree.control ci permette di controllare quando avanti vogliamo andare nel far crescere
-#' minsize=quanto piccolo deve essere un nodo, num osservazioni minime per dividere un nodo 
-#' minsize = 1 -->una foglia per ogni osservazione
-#' mindev, quanto R2 spiego e mi fermo quando ne spiego meno di quello che ho indicato
+#' control sets tree growth parameters, here using CV
+#' tree.control decides when to stop growing
+#' minsize = minimum observations to split a node
+#' mindev = stop splitting if R2 improvement is smaller than this
 
-# Chiaramente albero fitto = si fatica a leggere = non utile
+# Deep tree = hard to interpret = not useful
 plot(m_tree)
 text(m_tree, pretty = 4)
-#' modello che sovradatta, vogliamo potarlo
-#' usiamo CV per potarlo
+#' model overfits, we want to prune it
+#' use CV for pruning
 
 set.seed(1234)
 prune = cv.tree(m_tree, K = 5)
 plot(prune)
-#' param di regolazione e' la sua dimensione (size)
-#' qui la regoliamo tramite CV
+#' tuning parameter is tree size
+#' adjust it using CV
 str(prune)
-#' e' una lista che indicizza rispetto a size alcune misure di errore (mi interessa la devianza)
+#' list indexed by size with error measures (focus on deviance)
 
 # Zoom
 plot(prune, xlim = c(0,30))
@@ -175,19 +173,19 @@ J <- rev(prune$size)[which(rev(prune$dev) == min(prune$dev))[1]]
 J
 abline(v = J, lty = 2, col = 2)
 
-m_tree_b = prune.tree(m_tree, best = J)  #taglia l'albero in corrispondenza di una certa altezza
+m_tree_b = prune.tree(m_tree, best = J)  # prune tree at selected size
 plot(m_tree_b)
 text(m_tree_b, pretty = 4, cex=0.6)
 
-#' particolarita' albero: facile interpretabilita'
-#' stima funzioni a gradini (non funz liscie) quindi una relazioni molto ripida e' difficile da stimare
-#' connsidera le interazioni, ne considera molte
-#' previsioni discrete, non sara' mai un valore diverso dai valori finali delle foglie
+#' Tree features: easy interpretability
+#' Estimates step functions (not smooth), steep relationships are hard
+#' Considers interactions, many of them
+#' Predictions are discrete, limited to leaf values
 head(predict(m_tree_b, vvv))
-#' la funz multivariata stimata (funz a gradini) e' molto semplice 
-#' puo' fare solo divisioni ricorsive (dopo aver fatto uno split mi concentro su uno sottospazio delle esplicative )
-#' l'albero cerca di combattere la maledizione della dimensionalita' con questa restrizione dello spazio
-#' ritorna solo l'err di convalida medio, quindi e' difficile usare il metodo CV 1se
+#' Multivariate function is simple 
+#' Only recursive splits (split a subspace of variables)
+#' Tree helps with curse of dimensionality
+#' Only returns mean CV error, 1se CV method difficult to apply
 
 p.tree = predict(m_tree_b,vvv)
 mspe.tree<- mean((p.tree-vvv$lp)^2)
@@ -201,16 +199,15 @@ library(ranger)
 mod_rf = ranger(lp~., data = city)
 
 
-# 1] scegliamo il valore minimo di mtry
+# 1] choose minimum mtry
 set.seed(123)
 rf_all = lapply(1:12, function(l) ranger(lp~., data = sss, mtry = l))
 err_rf = unlist(lapply(rf_all, function(x) x$prediction.error))
-plot(err_rf, xlab = "Variabili campionate", ylab = "Errore out-of-bag", type = "l")
+plot(err_rf, xlab = "Sampled variables", ylab = "Out-of-bag error", type = "l")
 mtry_opt <- which.min(err_rf) 
 mtry_opt
 abline(v = mtry_opt, lty = 2, col = 2)
-# Per quel valore di mtry, controlliamo che il numero di alberi
-# sia sufficiente
+# For this mtry, check number of trees
 ntr = seq(10,350,by=10)
 ntr
 set.seed(123)
@@ -228,34 +225,34 @@ alb <- ranger(lp~., data = sss, mtry = mtry_opt , num.trees = num,
               importance = "impurity")
 alb
 
-# Importanza delle variabili 
+# Variable importance 
 vimp = ranger::importance(alb)
 
 dotchart(vimp[order(vimp)])
-# Ordina i valori di importanza delle variabili
+# Sort variable importance values
 vimp_ordered <- vimp[order(vimp, decreasing = T)]
 
-# Carica ggplot2
+# Load ggplot2
 library(ggplot2)
 
-# Converti vimp_ordered in un data frame
+# Convert vimp_ordered to a data frame
 vimp_df <- data.frame(
   Variable = names(vimp_ordered),
   Importanza = as.numeric(vimp_ordered)
 )
 
-# Ordina le variabili per avere le più importanti in alto
+# Order variables so most important are on top
 vimp_df$Variable <- factor(vimp_df$Variable, levels = rev(names(sort(vimp_ordered, decreasing = TRUE))))
 
-# Crea il grafico con nomi più piccoli
+# Plot with smaller names
 ggplot(vimp_df, aes(x = Variable, y = Importanza)) +
-  geom_bar(stat = "identity", fill = "lightblue", color = "white") + # Barre con bordo
-  theme_minimal() + # Tema pulito
-  labs(x = NULL, y = "Importanza") + # Etichette degli assi
-  theme(axis.text.x = element_text(size = 12),  # Dimensione etichette asse X
-        axis.text.y = element_text(size = 8),   # **Riduci la dimensione dei nomi**
+  geom_bar(stat = "identity", fill = "lightblue", color = "white") + # Bars with border
+  theme_minimal() + # Clean theme
+  labs(x = NULL, y = "Importance") + # Axis labels
+  theme(axis.text.x = element_text(size = 12),  # X-axis label size
+        axis.text.y = element_text(size = 8),   # Reduce label size
         axis.title = element_text(size = 14)) +
-  coord_flip() # Ruota il grafico per barre orizzontali
+  coord_flip() # Horizontal bars
 
 pr.rf = predict(alb, data = vvv, type = "response") 
 mspe.rf = mean( (pr.rf$pred - vvv$lp)^2 )
@@ -263,16 +260,14 @@ mspe.rf
 
 
 #+++++++++++++++++++++++
-# Risultati dei modelli ------------------------
+# Model results ------------------------
 #+++++++++++++++++++++++
 grep("mspe\\.", ls(), value = T)
 
 errori_or = sapply(grep("mspe\\.", ls(), value = T), get)
 errori_or
-# Nomi piu' leggibili
+# More readable names
 nn = names(errori_or)
 names(errori_or) = nn
 
 knitr::kable(cbind("MSPE" = errori_or), digits = 5)
-
-
