@@ -22,7 +22,7 @@ options(scipen = 999)
 load("dati_prof.RData")
 length(unique(dati$house_id_num))
 
-#Log prezzi medi nei 4 trimestri
+# Log of average prices over the 4 quarters
 dati %>%
   group_by(city, id_period) %>%
   summarise(mean_ci_data = mean_ci(lp), .groups = "drop") %>%
@@ -35,13 +35,13 @@ dati %>%
   geom_point(size = 3) +  
   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2) +
   geom_line(size = 0.9) +
-  labs(x = "Trimestre", y = "Log prezzo medio", shape = "Città", col = "Città") +
+  labs(x = "Quarter", y = "Log mean price", shape = "City", col = "City") +
   theme_minimal() 
 
 
-#Traiettorie individuali
+# Individual trajectories
 library(lattice)
-# Prendo 5 ID casuali per città
+# Select 5 random IDs per city
 selected_ids <- dati %>%
   group_by(city) %>%            
   slice_sample(n = 5, replace = FALSE) %>%  
@@ -62,15 +62,12 @@ xyplot(lp ~ id_period | factor(house_id_num, levels = unique(dati_filt$house_id_
        data = dati_filt)
 
 
-#Modelli------------------------------------------------------------------------
+# Models------------------------------------------------------------------------
 m0 <- lme(lp  ~ as.numeric(id_period), ven,
           random=list(house_id_num= ~ as.numeric(id_period) ),
           correlation=corCAR1(form= ~ as.numeric(id_period)|house_id_num))
 plot(m0)
 summary(m0)
-
-
-
 
 view(Loblolly)
 m0 <- lme(height  ~ age ,Loblolly,
@@ -80,7 +77,7 @@ summary(m0)
 
 
 
-# mixed effects random intercept------------------------------------------------
+# Mixed effects random intercept------------------------------------------------
 library(nlme)
 lme1 <- lme(lp ~ city * as.numeric(id_period), random = ~ 1 | house_id_num,
                   data = dati)
@@ -88,7 +85,7 @@ summary(lme1)
 (0.5443611^2) /(0.5443611^2 + 0.2150244^2)   
 AIC(lme1)
 
-#confronto interazioni----------------------------------------------------------
+# Compare interactions----------------------------------------------------------
 lme0_ml <- lme(lp ~ city + as.numeric(id_period), random = ~ 1 | house_id_num,
                    , method= "ML", data = dati)
 
@@ -96,7 +93,7 @@ lme1_ml <- lme(lp ~ city * as.numeric(id_period), random = ~ 1 | house_id_num,
                   , method="ML", data = dati)
 anova(lme1_ml, lme0_ml)
 
-# mixed effects random intercept - AR1 errors-----------------------------------
+# Mixed effects random intercept - AR1 errors-----------------------------------
 lme1_ar1 <- lme(lp~ city*as.numeric(id_period), random = ~ 1 | house_id_num,
                    correlation = corAR1(form = ~ 1 | house_id_num),
                    data = dati)
@@ -105,7 +102,7 @@ summary(lme1_ar1)
 AIC(lme1_ar1)
 
 
-# mixed effects random intercept and variables - AR1 errors---------------------
+# Mixed effects random intercept with variables - AR1 errors---------------------
 lme2_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verified + 
                    room_type + accommodates + beds + minimum_nights + maximum_nights + 
                    number_of_reviews + review_scores_rating + review_scores_accuracy + 
@@ -121,7 +118,7 @@ summary(lme2_ar1)
 AIC(lme2_ar1)
 
 
-#confronto pendenze casuali-----------------------------------------------------
+# Compare random slopes---------------------------------------------------------
 lme1_ar1_ml <- lme(lp~ city*as.numeric(id_period), random = ~ 1 | house_id_num,
                    correlation = corAR1(form = ~ 1 | house_id_num),
                    method = "ML",
@@ -135,7 +132,7 @@ anova(lme3_ar1_ml, lme1_ar1_ml)
 
 
 
-# mixed effects random intercept and slope and variables - AR1 errors-----------
+# Mixed effects random intercept and slope with variables - AR1 errors-----------
 lme4_ar1 <- lme(lp ~ host_response_time + host_is_superhost + host_identity_verified + 
                   room_type + accommodates + beds + minimum_nights + maximum_nights + 
                   number_of_reviews + review_scores_rating + review_scores_accuracy + 
@@ -152,7 +149,7 @@ AIC(lme4_ar1)
 (0.39934522^2 + 0.05949297^2)/(0.39934522^2 + 0.05949297^2+0.22449214^2)
 
 
-#Modelli per sinola città-------------------------------------------------------
+# Models for each city-------------------------------------------------------
 mil<- dati %>% 
   filter(city=="Milan") 
 
@@ -220,4 +217,3 @@ nap_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verifi
                data = nap)
 summary(nap_ar1)
 (0.374006  ^2)/(0.374006  ^2 + 0.2147459^2)
-
