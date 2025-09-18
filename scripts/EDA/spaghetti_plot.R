@@ -2,7 +2,7 @@ library(ggplot2)
 library(dplyr)
 library(patchwork)
 
-# Creazione del grafico per la distribuzione sulla scala originale (price)
+# Create the plot for the distribution on the original scale (price)
 grafico1 <- dati_def %>%
   filter(host_id == "538114385") %>% 
   mutate(house_id_label = sub(".*00(\\d+)", "\\1", as.character(house_id_num)),  # Extract the numbers after "00"
@@ -19,7 +19,7 @@ grafico1 <- dati_def %>%
        color = "ID casa") +
   theme(legend.position = "right")
 
-# Creazione del grafico per la distribuzione sulla scala logaritmica (log(price))
+# Create the plot for the distribution on the logarithmic scale (log(price))
 grafico2 <- dati_def %>%
   filter(host_id == "1478007") %>% 
   mutate(house_id_label = sub(".*00(\\d+)", "\\1", as.character(house_id_num)),  # Extract the numbers after "00"
@@ -37,10 +37,9 @@ grafico2 <- dati_def %>%
   theme(legend.position = "right")
 
 
-# Posizionare i grafici uno accanto all'altro
+# Place the plots side by side
 final_plot <- grafico1 + grafico2 +
   plot_layout(ncol = 2)
 
-# Visualizza il risultato
+# Display the result
 print(final_plot)  
-
