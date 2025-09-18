@@ -160,7 +160,21 @@ Initial analyses focused on the most recent quarter, using the latest available 
 </details>
 
 The full dataset is then used to analyze price trends over time, focusing on four major cities: Milan, Venice, Rome, and Naples.
+<details>
+  <summary><strong>Quarterly Price Analysis</strong></summary>
 
+  <br>
+
+  ### Average Price by City
+  ![Room Type](docs/mean_lp_spaghetti.png)
+
+  ### House Prices Across Cities
+  ![Property Type](docs/individual_lp.png)
+
+  ### House Prices by Different Hosts 
+  ![Instant Bookable](docs/response.png)
+
+</details>
 
 ---
 
