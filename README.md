@@ -144,21 +144,21 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
 
   <br>
 
-  ### Host Identity 
-  ![Room Type](docs/room.png)
+  ### Host Identity Verified
+  ![Room Type](docs/identity.png)
 
   ### Super Host
-  ![Property Type](docs/property.png)
+  ![Property Type](docs/superhost.png)
 
   ### Host Response Time
-  ![Instant Bookable](docs/instant_book.png)
+  ![Instant Bookable](docs/response.png)
 
 </details>
 
 
 ---
 
-👉 (![code](scripts/EDA))
+👉 The following EDA script reproduces all figures and more analyses for the Airbnb dataset. (![code](scripts/EDA))
 
 ---
 
@@ -190,23 +190,5 @@ The main findings from the rental price analysis are:
 **Conclusion**: Structural factors, temporal dynamics, and geographic characteristics significantly influence rental prices, with substantial heterogeneity among individual properties.
 
 
-📊 Full results and plots available below ⬇️  
-
-<details>
-  <summary>🔎 Click to expand full EDA (descriptions + charts)</summary>
-
-![Price Distribution](visuals/price_distribution.png)
-
-![Property Types](visuals/property_types.png)
-
-Additional details about host behavior, property sizes, and price dynamics are provided here.
-
-</details>
-
-👉 Or check the full report in [docs/EDA.md](docs/EDA.md)
-
-
-
-</details>
 ## 💡 Potential Extensions
 - Download **`neighbourhoods.geojson`** from [InsideAirbnb](https://insideairbnb.com/), which defines neighborhood boundaries, for spatial analysis.
