@@ -158,7 +158,7 @@ The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed t
 
 ---
 
-👉 BLA BLA BLA. (![code](scripts/EDA))
+👉 (![code](scripts/EDA))
 
 ---
 
