@@ -203,8 +203,9 @@ To simplify the models and improve interpretability, unnecessary variables were 
 - Kept: `house_id`, `id_period` (for quarterly analysis)  
 
 Models were applied to Milan, Venice, Rome, and Naples (`city` variable), using the latest available scraping data to capture up-to-date prices.  
-- **Lasso Regression**  
-- **Elastic Net Regression**  
+- **Lasso Regression**
+- **Adaptive Lasso Regression**    
+- **Adaptive Elastic Net Regression**  
 - **Regression Trees**  
 - **Random Forest**  
 
