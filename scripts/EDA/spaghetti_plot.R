@@ -14,9 +14,9 @@ grafico1 <- dati_def %>%
   geom_point(size = 2) +
   theme_minimal() +
   labs(title = NULL,
-       x = "Trimestre",
-       y = "Prezzo",
-       color = "ID casa") +
+       x = "Quarter",
+       y = "Log price",
+       color = "House ID") +
   theme(legend.position = "right")
 
 # Create the plot for the distribution on the logarithmic scale (log(price))
@@ -31,9 +31,9 @@ grafico2 <- dati_def %>%
   geom_point(size = 2) +
   theme_minimal() +
   labs(title = NULL,
-       x = "Trimestre",
-       y = "Prezzo",
-       color = "ID casa") +
+       x = "Quarter",
+       y = "Log Price",
+       color = "House ID") +
   theme(legend.position = "right")
 
 
@@ -43,3 +43,4 @@ final_plot <- grafico1 + grafico2 +
 
 # Display the result
 print(final_plot)  
+
