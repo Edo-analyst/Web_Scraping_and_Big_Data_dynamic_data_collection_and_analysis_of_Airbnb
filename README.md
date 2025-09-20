@@ -48,7 +48,7 @@ The downloaded datasets from InsideAirbnb include:
 
 ---
 
-👉 This automated pipeline ensures a **structured, reproducible, and up-to-date data collection process**, enabling systematic analysis of Airbnb activity across multiple Italian cities. (![code](scripts/Web_Scraping))
+👉 This automated pipeline ensures a **structured, reproducible, and up-to-date data collection process**, enabling systematic analysis of Airbnb activity across multiple Italian cities. (![click here to view code](scripts/Web_Scraping))
 
 ---
 
