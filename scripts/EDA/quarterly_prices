@@ -22,7 +22,7 @@ options(scipen = 999)
 load("dati_prof.RData")
 length(unique(dati$house_id_num))
 
-# Log of average prices over the 4 quarters
+# Log of average prices over the 4 quarters--------------------------------------------------
 dati %>%
   group_by(city, id_period) %>%
   summarise(mean_ci_data = mean_ci(lp), .groups = "drop") %>%
@@ -39,7 +39,7 @@ dati %>%
   theme_minimal() 
 
 
-# Individual trajectories
+# Individual trajectories--------------------------------------------------------------------
 library(lattice)
 # Select 5 random IDs per city
 selected_ids <- dati %>%
