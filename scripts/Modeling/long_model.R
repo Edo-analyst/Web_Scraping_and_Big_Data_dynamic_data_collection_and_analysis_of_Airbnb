@@ -47,45 +47,6 @@ dati$longitude=NULL
 dati$neighbourhood_cleansed=NULL
 length(unique(dati$house_id_num))
 
-# Log of average prices over the 4 quarters
-dati %>%
-  group_by(city, id_period) %>%
-  summarise(mean_ci_data = mean_ci(lp), .groups = "drop") %>%
-  unnest_wider(mean_ci_data) %>%
-  mutate(
-    id_period = id_period, 
-    agex = as.numeric(id_period) - 0.05 + 0.05 * (city == "Milan")  
-  ) %>%
-  ggplot(aes(x = agex, y, col = city, shape = city)) +  
-  geom_point(size = 3) +  
-  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2) +
-  geom_line(size = 0.9) +
-  labs(x = "Quarter", y = "Log mean price", shape = "City", col = "City") +
-  theme_minimal() 
-
-
-# Individual trajectories
-library(lattice)
-# Select 5 random IDs per city
-selected_ids <- dati %>%
-  group_by(city) %>%            
-  slice_sample(n = 5, replace = FALSE) %>%  
-  pull(house_id_num) 
-dati_filt <- dati %>%
-  filter(house_id_num %in% selected_ids) %>%
-  arrange(city, house_id_num)  
-num_ids <- length(unique(dati_filt$house_id_num))
-colors <- c("red", "brown", "yellow", "green")
-xyplot(lp ~ id_period | factor(house_id_num, levels = unique(dati_filt$house_id_num)), 
-       group = city,
-       cex = 1,  # Increase point size
-       par.settings = list(superpose.symbol = list(pch = 16, 
-                                                   cex = 1.5,  
-                                                   col = colors)),  
-       as.table = TRUE, 
-       auto.key = list(points = TRUE, columns = 2),
-       data = dati_filt)
-
 
 # Mixed effects random intercept------------------------------------------------
 library(nlme)
@@ -227,6 +188,7 @@ nap_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verifi
                data = nap)
 summary(nap_ar1)
 (0.374006  ^2)/(0.374006  ^2 + 0.2147459^2)
+
 
 
 
