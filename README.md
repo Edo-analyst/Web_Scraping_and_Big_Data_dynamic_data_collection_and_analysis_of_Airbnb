@@ -140,7 +140,7 @@ Initial analyses focused on the most recent quarter, using the latest available 
   ![Instant Bookable](docs/instant_book.png)
 
   ### Property Size
-  ![Instant Bookable](docs/scatterplots.png)
+  ![Instant Bookable](docs/scatt_GAM-Spline-lm.png)
 
 </details>
 
