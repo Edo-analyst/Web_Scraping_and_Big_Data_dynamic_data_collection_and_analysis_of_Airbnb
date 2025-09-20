@@ -108,7 +108,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
 ---
 
-👉 After preprocessing, the dataset is **clean, consistent, and ready for **preliminary analysis**. (![code](scripts/Data_Cleansing))
+👉 After preprocessing, the dataset is **clean, consistent, and ready for **preliminary analysis**. (![click here to view code](scripts/Data_Cleansing))
 
 ---
 
@@ -178,7 +178,7 @@ The full dataset is then used to analyze price trends over time, focusing on fou
 
 ---
 
-👉 The following EDA script reproduces all figures and more analyses for the Airbnb dataset. (![code](scripts/EDA))
+👉 The following EDA script reproduces all figures and more analyses for the Airbnb dataset. (![click here to view code](scripts/EDA))
 
 ---
 
