@@ -84,7 +84,7 @@ sort(table(dati_puliti$room_type), decreasing = T)
 sort(table(dati_puliti$instant_bookable), decreasing = T)
 
 # Clean house_id: replace underscores with "00"
-dati_puliti$house_id <- gsub("\\_", "00", dati_puliti$house_id)
+dati_puliti$house_id_num <- gsub("\\_", "00", dati_puliti$house_id)
 
 # Function to calculate NA statistics
 na_get=function(dati){
@@ -211,3 +211,4 @@ na_tab %>%
     axis.title.x = element_blank(), 
     legend.position = "top"
   )
+
