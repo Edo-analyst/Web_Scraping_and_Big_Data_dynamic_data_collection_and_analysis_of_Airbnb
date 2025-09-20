@@ -205,10 +205,15 @@ Evaluation was based on the Mean Squared Prediction Error (MSPE), focusing on th
 
 ---
 
-## Longitudinal Model
+## Longitudinal Models
+`house_id_num`, and `id_period` are essential variables for these models.
+**Linear mixed-effects models (LMEs)** were applied to analyze Airbnb listings across four Italian cities (**Milan, Venice, Rome, Naples**), focusing on properties observed in all four time periods.
 
+- **Random intercept and slope models** were fitted with `house_id_num` as the grouping variable.  
+- **AR(1) correlation structures** were included to capture temporal dependence.  
+- **City-specific models** were also estimated to highlight within-city dynamics.  
 
-  
+These models capture both **time trends** and **differences across cities**, while accounting for repeated measures on the same property.
 
 
 
