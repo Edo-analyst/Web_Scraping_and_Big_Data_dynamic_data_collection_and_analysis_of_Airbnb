@@ -77,6 +77,7 @@ setdiff(colnames(dati_full), colnames(dati))
 rm(dati_full)
 dati_puliti <- dati
 rm(dati)
+dati$house_id2=NULL  #house with id more accurate
 
 
 
