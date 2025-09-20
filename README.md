@@ -201,7 +201,6 @@ Models were applied to Milan, Venice, Rome, and Naples, using the latest availab
 
 The dataset was split into 70% training and 30% testing to balance variance and bias.  
 Evaluation was based on the Mean Squared Prediction Error (MSPE), focusing on the trade-off between interpretability and predictive accuracy. 
-(![click here to view code](scripts/EDA))
 
 ---
 
@@ -215,6 +214,7 @@ Evaluation was based on the Mean Squared Prediction Error (MSPE), focusing on th
 
 These models capture both **time trends** and **differences across cities**, while accounting for repeated measures on the same property.
 
+(![click here to view code](scripts/EDA))
 
 
 
