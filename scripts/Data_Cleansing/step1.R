@@ -68,6 +68,7 @@ dati_full <- dati_full %>%
             by = c("host_id", "latitude", "longitude"))
 str(dati_full)
 
+
 # Select cleaned variables and remove unnecessary columns
 dati <- dati_full[,-c(2:5,7,8,9,11,13:15,20:26,28,40,44:56,58:61,69,71:75)]
 setdiff(colnames(dati_full), colnames(dati))  
@@ -76,6 +77,7 @@ setdiff(colnames(dati_full), colnames(dati))
 rm(dati_full)
 dati_puliti <- dati
 rm(dati)
+
 
 
 
