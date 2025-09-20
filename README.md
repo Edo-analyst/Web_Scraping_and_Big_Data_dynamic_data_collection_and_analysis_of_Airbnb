@@ -112,7 +112,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
 ---
 
-## 📊 Exploratory Data Analysis
+## 📊 Exploratory Data Analysis 
 The cleaned Airbnb dataset (**575,542 listings × 30 variables**) was analyzed to explore property characteristics, host attributes, and price dynamics across **10 Italian cities**. 
 Initial analyses focused on the most recent quarter, using the latest available prices for all listings.
 <details>
@@ -187,7 +187,7 @@ The full dataset is then used to analyze price trends over time, focusing on fou
 ## Regression Models
 To simplify the models and improve interpretability, unnecessary variables were removed:  
 - Dropped: `price` (replaced with log price - `lp`), `id`, `host_id`, `latitude`, `longitude`  
-- Kept for later: `house_id_num`, `id_period` (only for quarterly analysis)  
+- Kept: `house_id_num`, `id_period` (only for quarterly analysis)  
 
 Models were applied to Milan, Venice, Rome, and Naples, using the latest available scraping data to capture up-to-date prices.  
 - **Lasso Regression**
