@@ -19,7 +19,32 @@ library(dplyr)
 library(tidyverse) 
 
 options(scipen = 999)
-load("dati_prof.RData")
+load("dati_modelli.RData")
+
+# Keep listings with 'maximum_nights' <= 1125
+dati <- dati_def %>%
+  filter(maximum_nights <= 1125) 
+rm(dati_def)
+
+# Keep listings for Milan, Venice, Rome, and Naples
+dati <- dati %>%
+  filter(city %in% c("Milan", "Venice", "Rome", "Naples")) %>%
+  droplevels() 
+
+# Keep houses that appear in all 4 quarters
+dati <- dati %>%
+  group_by(house_id_num) %>%
+  filter(n_distinct(id_period) == 4) %>%
+  ungroup()
+table(dati$id_period)
+
+#remove useless variables
+dati$price=NULL  #use lp
+dati$id=NULL
+dati$host_id=NULL
+dati$latitude=NULL
+dati$longitude=NULL
+dati$neighbourhood_cleansed=NULL
 length(unique(dati$house_id_num))
 
 # Log of average prices over the 4 quarters--------------------------------------------------
