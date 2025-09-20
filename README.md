@@ -230,10 +230,11 @@ The main findings from the rental price analysis are:
 2. **Predictive models**:  
   - Non-parametric models, especially **Random Forest**, showed the best predictive performance.  
 
-3. **Longitudinal analysis and geographical differences**:  
+3. **Longitudinal analysis and differences between cities**:  
   - **Naples**: lower average prices with a decreasing trend over time  
   - **Rome**: faster price growth over time  
   - **Venice**: higher-than-average prices with steady growth  
+(*Milan serves as the reference category*)
 
 4. **Individual temporal trends**:  
   - Mixed-effects models with random intercept and slope show that price trends vary across properties  
