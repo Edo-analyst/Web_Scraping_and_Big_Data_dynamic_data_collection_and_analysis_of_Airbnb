@@ -26,7 +26,7 @@ dati <- dati_def %>%
   filter(maximum_nights <= 1125) 
 rm(dati_def)
 
-# Keep listings for Milan, Venice, Rome, or Naples
+# Keep listings for Milan, Venice, Rome, and Naples
 dati <- dati %>%
   filter(city %in% c("Milan", "Venice", "Rome", "Naples")) %>%
   droplevels() 
@@ -38,13 +38,12 @@ dati <- dati %>%
   ungroup()
 table(dati$id_period)
 
+#remove useless variables
 dati$price=NULL  #use lp
 dati$id=NULL
 dati$host_id=NULL
 dati$latitude=NULL
 dati$longitude=NULL
-dati$house_id=NULL
-dati$neighbourhood_cleansed=NULL
 length(unique(dati$house_id_num))
 
 # Log of average prices over the 4 quarters
@@ -94,7 +93,6 @@ m0 <- lme(lp  ~ as.numeric(id_period), ven,
 plot(m0)
 summary(m0)
 
-view(Loblolly)
 m0 <- lme(height  ~ age ,Loblolly,
           random=list(Seed= ~ age),
           correlation=corCAR1(form= ~ age|Seed))
@@ -242,4 +240,5 @@ nap_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verifi
                data = nap)
 summary(nap_ar1)
 (0.374006  ^2)/(0.374006  ^2 + 0.2147459^2)
+
 
