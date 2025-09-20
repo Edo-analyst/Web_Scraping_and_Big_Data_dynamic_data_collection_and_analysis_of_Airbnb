@@ -35,3 +35,7 @@ sort(table(dati_def$instant_bookable), decreasing = TRUE)/nrow(dati_def)
 
 # City: check distribution (as proportion of dataset)
 sort(table(dati_def$city), decreasing = TRUE)/nrow(dati_def)
+
+#Save the dataset created
+save(file = "dati_modelli.RData", dati_def)
+
