@@ -185,24 +185,11 @@ The full dataset is then used to analyze price trends over time, focusing on fou
 ## 🤖 Modeling
 
 ## Regression Models
-Regression models were estimated for Milan, Venice, Rome, and Naples using the latest available data.  
-Models considered:  
-- **Lasso Regression**  
-- **Elastic Net Regression**  
-- **Regression Trees**  
-- **Random Forest**  
-
-Evaluation metric: MSPE, balancing interpretability and accuracy.  
-
----
-
-## Longitudinal Model
-
 To simplify the models and improve interpretability, unnecessary variables were removed:  
-- Dropped: `price` (replaced with log), `id`, `host_id`, `latitude`, `longitude`  
-- Kept: `house_id_num`, `id_period` (for quarterly analysis)  
+- Dropped: `price` (replaced with log price - `lp`), `id`, `host_id`, `latitude`, `longitude`  
+- Kept for later: `house_id_num`, `id_period` (only for quarterly analysis)  
 
-Models were applied to Milan, Venice, Rome, and Naples (`city` variable), using the latest available scraping data to capture up-to-date prices.  
+Models were applied to Milan, Venice, Rome, and Naples, using the latest available scraping data to capture up-to-date prices.  
 - **Lasso Regression**
 - **Adaptive Lasso Regression**    
 - **Adaptive Elastic Net Regression**  
@@ -210,7 +197,13 @@ Models were applied to Milan, Venice, Rome, and Naples (`city` variable), using 
 - **Random Forest**  
 
 The dataset was split into 70% training and 30% testing to balance variance and bias.  
-Evaluation was based on the Mean Squared Prediction Error (MSPE), focusing on the trade-off between interpretability and predictive accuracy.
+Evaluation was based on the Mean Squared Prediction Error (MSPE), focusing on the trade-off between interpretability and predictive accuracy. 
+
+---
+
+## Longitudinal Model
+
+
   
 
 
