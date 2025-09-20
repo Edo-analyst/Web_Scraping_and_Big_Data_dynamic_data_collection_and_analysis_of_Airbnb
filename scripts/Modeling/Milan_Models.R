@@ -16,11 +16,9 @@ rm(last_quarter)
 dati$price=NULL  # use log-price
 dati$id=NULL
 dati$host_id=NULL
-dati$house_id=NULL
 dati$latitude=NULL
 dati$longitude=NULL
 dati$id_period=NULL
-dati$house_id2=NULL
 dati$house_id_num=NULL
 dati$neighbourhood_cleansed=NULL
 
@@ -268,3 +266,4 @@ nn = names(errori_or)
 names(errori_or) = nn
 
 knitr::kable(cbind("MSPE" = errori_or), digits = 5)
+
