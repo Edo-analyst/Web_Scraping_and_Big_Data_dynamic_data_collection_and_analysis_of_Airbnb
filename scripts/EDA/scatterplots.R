@@ -12,8 +12,8 @@ bedrooms_scat <- last_quarter %>%
               color = "red") +
   theme_minimal() +
   labs(title = NULL,
-       x = "Numero stanze da letto",
-       y = "Log prezzo")
+       x = "Bedrooms",
+       y = "Log Price")
 
 
 #accommodates-------------------------------------------------------------------
@@ -28,8 +28,8 @@ accommodates_scat <- last_quarter %>%
               color = "red") +
   theme_minimal() +
   labs(title = NULL,
-       x = "Numero di ospiti",
-       y = "Log prezzo")
+       x = "Guests",
+       y = "Log Price")
 
 #beds---------------------------------------------------------------------------
 beds_scat <- last_quarter %>%
@@ -43,8 +43,8 @@ beds_scat <- last_quarter %>%
               color = "red") +
   theme_minimal() +
   labs(title = NULL,
-       x = "Numero di letti",
-       y = "Log prezzo")
+       x = "Beds",
+       y = "Log Price")
 
 #bathrooms_recoded--------------------------------------------------------------
 bathrooms_scat <- last_quarter %>%
@@ -58,8 +58,9 @@ bathrooms_scat <- last_quarter %>%
               color = "red") +
   theme_minimal() +
   labs(title = NULL,
-       x = "Numero di bagni",
-       y = "Log prezzo")
+       x = "Bathrooms",
+       y = "Log Price")
+
 
 
 
