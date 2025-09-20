@@ -47,7 +47,8 @@ dati_puliti$name=NULL
 # Convert house_id into numeric format
 options(scipen = 999)  # prevent scientific notation
 dati_puliti$house_id_num<- as.numeric(dati_puliti$house_id)
-
+dati_puliti$house_id = NULL
+                 
 # Recheck NA summary
 na_tab=na_get(dati_puliti) 
 na_tab <- na_tab[na_tab$freq_relativa >0,] 
@@ -80,4 +81,5 @@ na_get(dati)
 
 # Create final dataset without missing values
 dati_def <- na.omit(dati)
+
 
