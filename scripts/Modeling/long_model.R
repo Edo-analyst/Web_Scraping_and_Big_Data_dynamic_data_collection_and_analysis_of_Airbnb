@@ -44,6 +44,7 @@ dati$id=NULL
 dati$host_id=NULL
 dati$latitude=NULL
 dati$longitude=NULL
+dati$neighbourhood_cleansed=NULL
 length(unique(dati$house_id_num))
 
 # Log of average prices over the 4 quarters
@@ -240,5 +241,6 @@ nap_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verifi
                data = nap)
 summary(nap_ar1)
 (0.374006  ^2)/(0.374006  ^2 + 0.2147459^2)
+
 
 
