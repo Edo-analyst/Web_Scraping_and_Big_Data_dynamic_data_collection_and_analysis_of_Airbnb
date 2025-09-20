@@ -60,7 +60,7 @@ dati %>%
   geom_point(size = 3) +  
   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2) +
   geom_line(size = 0.9) +
-  labs(x = "Quarter", y = "Log mean price", shape = "City", col = "City") +
+  labs(x = "Quarter", y = "Average Log Price", shape = "City", col = "City") +
   theme_minimal() 
 
 
