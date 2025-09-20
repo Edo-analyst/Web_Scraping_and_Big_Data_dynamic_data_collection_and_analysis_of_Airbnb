@@ -108,7 +108,7 @@ The raw Airbnb datasets were cleaned, transformed, and prepared for analysis to 
 
 ---
 
-👉 After preprocessing, the dataset is **clean, consistent, and ready for analysis or modeling**, with 35 key variables carefully prepared. (![code](scripts/Data_Cleansing))
+👉 After preprocessing, the dataset is **clean, consistent, and ready for **preliminary analysis**. (![code](scripts/Data_Cleansing))
 
 ---
 
