@@ -87,20 +87,6 @@ xyplot(lp ~ id_period | factor(house_id_num, levels = unique(dati_filt$house_id_
        data = dati_filt)
 
 
-# Models------------------------------------------------------------------------
-m0 <- lme(lp  ~ as.numeric(id_period), ven,
-          random=list(house_id_num= ~ as.numeric(id_period) ),
-          correlation=corCAR1(form= ~ as.numeric(id_period)|house_id_num))
-plot(m0)
-summary(m0)
-
-m0 <- lme(height  ~ age ,Loblolly,
-          random=list(Seed= ~ age),
-          correlation=corCAR1(form= ~ age|Seed))
-summary(m0)
-
-
-
 # Mixed effects random intercept------------------------------------------------
 library(nlme)
 lme1 <- lme(lp ~ city * as.numeric(id_period), random = ~ 1 | house_id_num,
@@ -241,6 +227,7 @@ nap_ar1 <- lme(lp~ host_response_time + host_is_superhost + host_identity_verifi
                data = nap)
 summary(nap_ar1)
 (0.374006  ^2)/(0.374006  ^2 + 0.2147459^2)
+
 
 
 
